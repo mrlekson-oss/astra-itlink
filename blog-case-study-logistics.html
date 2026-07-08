@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кейс: унификация телефонии для транспортной компании на Asterisk | AstraITLink</title>
+  <meta name="description" content="Реальный кейс: распределённая транспортная компания с 12 филиалами. Как мы объединили телефонию, снизили расходы на 60% и интегрировали с ERP.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%230055ff'/%3E%3Ctext x='50' y='62' text-anchor='middle' font-size='36' font-weight='bold' fill='white' font-family='Arial'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+
+<header class="header">
+  <div class="header__inner">
+    <a href="index.html" class="logo">Astra<span>ITLink</span></a>
+    <nav class="nav">
+      <ul class="nav__list">
+        <li><a href="index.html" class="nav__link">Главная</a></li>
+        <li><a href="services.html" class="nav__link">Услуги</a></li>
+        <li><a href="about.html" class="nav__link">О компании</a></li>
+        <li><a href="portfolio.html" class="nav__link">Кейсы</a></li>
+        <li><a href="blog.html" class="nav__link nav__link--active">Блог</a></li>
+        <li><a href="contacts.html" class="nav__link">Контакты</a></li>
+      </ul>
+    </nav>
+    <div class="header__cta">
+      <a href="tel:+79220681794" class="header__phone"><i class="fas fa-phone-alt"></i> +7 (922) 068-17-94</a>
+      <a href="contacts.html" class="btn btn--primary btn--sm">Связаться</a>
+    </div>
+    <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <h1 class="breadcrumbs__title">Кейс: Как мы объединили телефонию для транспортной компании с 12 филиалами</h1>
+    <div class="breadcrumbs__list">
+      <a href="index.html">Главная</a> <span>/</span>
+      <a href="blog.html">Блог</a> <span>/</span>
+      <span>Кейс транспорт</span>
+    </div>
+  </div>
+</section>
+
+<section class="page-content">
+  <div class="container">
+    <article class="article">
+      <img src="https://via.placeholder.com/800x400/003399/ffffff?text=Case+Study" alt="Кейс" class="article__image">
+      <div class="article__meta">
+        <span><i class="far fa-calendar-alt"></i> 8 июля 2026</span>
+        <span><i class="far fa-clock"></i> 7 минут чтения</span>
+        <span><i class="far fa-user"></i> Иван Петров</span>
+      </div>
+      <div class="article__content">
+
+<p>Этот кейс — реальная история о том, как мы помогли крупной транспортной компании решить проблему разрозненной телефонии и сэкономить более 5 миллионов рублей в год.</p>
+
+<h2>Исходные данные</h2>
+<p>Международная транспортная компания «ЛогистПро» (название изменено):</p>
+<ul>
+  <li>12 филиалов в 4 странах (Россия, Казахстан, Беларусь, Узбекистан)</li>
+  <li>450 сотрудников, из них 120 — водители и экспедиторы</li>
+  <li>Колл-центр на 25 операторов</li>
+  <li>Собственная ERP-система для управления заказами</li>
+</ul>
+
+<h2>Боль клиента</h2>
+<p>Телефонная инфраструктура представляла собой «лоскутное одеяло»:</p>
+<ul>
+  <li>В каждом филиале — своя АТС (Panasonic, мини-АТС, облачные номера)</li>
+  <li>Высокие расходы на международные звонки между филиалами — до 400 000 ₽/мес.</li>
+  <li>Плохое качество связи между офисами</li>
+  <li>Невозможность интеграции с ERP — операторам приходилось вручную вбивать данные</li>
+  <li>Частые сбои — филиалы теряли связь на несколько часов</li>
+  <li>Отсутствие единой отчётности и записи звонков</li>
+</ul>
+
+<h2>Наше решение</h2>
+<p>Спроектировали и внедрили кластерную IP-АТС на базе Asterisk:</p>
+
+<p><strong>Архитектура:</strong></p>
+<ul>
+  <li>Два сервера Asterisk в геораспределённом кластере (Москва и Алматы) с балансировкой через Kamailio</li>
+  <li>SIP-транки подключены к местным операторам в каждом регионе</li>
+  <li>Единый план нумерации: трёхзначные внутренние номера для всех сотрудников во всех филиалах</li>
+  <li>IAX2-туннели между офисами для бесплатной межфилиальной связи</li>
+</ul>
+
+<p><strong>Интеграция с ERP:</strong></p>
+<ul>
+  <li>Написан модуль интеграции через AMI + REST API ERP</li>
+  <li>При звонке клиента система определяет номер, находит заказ в ERP и показывает оператору полную информацию</li>
+  <li>После завершения звонка в ERP автоматически создаётся карточка события</li>
+</ul>
+
+<p><strong>Запись и аналитика:</strong></p>
+<ul>
+  <li>Все звонки пишутся в централизованное хранилище</li>
+  <li>Настроены дашборды с отчётами по каждому филиалу</li>
+  <li>Система отслеживает пропущенные звонки и SLA операторов</li>
+</ul>
+
+<h2>Результат</h2>
+<div class="modal__results">
+  <div class="modal__result-item"><strong>60%</strong> Снижение ежемесячных расходов</div>
+  <div class="modal__result-item"><strong>5 000 000 ₽</strong> Экономия в год</div>
+  <div class="modal__result-item"><strong>99.98%</strong> Uptime за 2 года</div>
+  <div class="modal__result-item"><strong>450</strong> Сотрудников объединены</div>
+</div>
+
+<p><strong>Дополнительные эффекты:</strong></p>
+<ul>
+  <li>Операторы тратят на 30% меньше времени на звонок благодаря автоматическому открытию карточки клиента</li>
+  <li>Сокращение пропущенных звонков с 15% до 2%</li>
+  <li>Возможность подключать новых сотрудников за 10 минут вместо 2 дней</li>
+  <li>Прозрачность: собственник видит полную статистику по всем звонкам компании за 5 минут</li>
+</ul>
+
+<h2>Вывод</h2>
+<p>Этот проект — наглядный пример того, как кастомизированное решение на Asterisk может не только решить текущие проблемы, но и открыть новые возможности для бизнеса. Окупаемость проекта составила 4 месяца. Последующие 2 года эксплуатации приносят компании чистую экономию 5+ миллионов рублей ежегодно.</p>
+
+      </div>
+    </article>
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer__grid"><div class="footer__brand"><a href="index.html" class="logo">Astra<span>ITLink</span></a><p>Надёжные VoIP-решения на базе Asterisk для вашего бизнеса.</p></div><div><h4 class="footer__title">Навигация</h4><ul class="footer__links"><li><a href="index.html">Главная</a></li><li><a href="services.html">Услуги</a></li><li><a href="about.html">О компании</a></li><li><a href="portfolio.html">Кейсы</a></li><li><a href="blog.html">Блог</a></li><li><a href="contacts.html">Контакты</a></li></ul></div><div><h4 class="footer__title">Услуги</h4><ul class="footer__links"><li><a href="services.html">Виртуальная АТС</a></li><li><a href="services.html">SIP-телефония</a></li><li><a href="services.html">Настройка Asterisk</a></li><li><a href="services.html">Интеграция с CRM</a></li><li><a href="services.html">Запись разговоров</a></li><li><a href="services.html">Техподдержка</a></li></ul></div><div><h4 class="footer__title">Контакты</h4><div class="footer__contact-item"><i class="fas fa-map-marker-alt"></i> г. Астрахань, ул. Бабушкина, д. 60, офис 12</div><div class="footer__contact-item"><i class="fas fa-phone"></i> <a href="tel:+79220681794">+7 (922) 068-17-94</a></div><div class="footer__contact-item"><i class="fas fa-envelope"></i> <a href="mailto:info@astra-itlink.ru">info@astra-itlink.ru</a></div><div class="footer__social"><a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a><a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a><a href="#" aria-label="VK"><i class="fab fa-vk"></i></a><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a></div></div></div><div class="footer__bottom">&copy; 2026 AstraITLink. Все права защищены.</div></div></footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

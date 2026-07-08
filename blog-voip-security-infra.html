@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Безопасная VoIP-инфраструктура на Asterisk | AstraITLink</title>
+  <meta name="description" content="Как построить защищённую VoIP-инфраструктуру на Asterisk: SIP-атаки, шифрование, аудит, изоляция сетей, соответствие законам.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%230055ff'/%3E%3Ctext x='50' y='62' text-anchor='middle' font-size='36' font-weight='bold' fill='white' font-family='Arial'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+
+<header class="header">
+  <div class="header__inner">
+    <a href="index.html" class="logo">Astra<span>ITLink</span></a>
+    <nav class="nav">
+      <ul class="nav__list">
+        <li><a href="index.html" class="nav__link">Главная</a></li>
+        <li><a href="services.html" class="nav__link">Услуги</a></li>
+        <li><a href="about.html" class="nav__link">О компании</a></li>
+        <li><a href="portfolio.html" class="nav__link">Кейсы</a></li>
+        <li><a href="blog.html" class="nav__link nav__link--active">Блог</a></li>
+        <li><a href="contacts.html" class="nav__link">Контакты</a></li>
+      </ul>
+    </nav>
+    <div class="header__cta">
+      <a href="tel:+79220681794" class="header__phone"><i class="fas fa-phone-alt"></i> +7 (922) 068-17-94</a>
+      <a href="contacts.html" class="btn btn--primary btn--sm">Связаться</a>
+    </div>
+    <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <h1 class="breadcrumbs__title">Безопасная связь: как построить защищённую VoIP-инфраструктуру на Asterisk</h1>
+    <div class="breadcrumbs__list">
+      <a href="index.html">Главная</a> <span>/</span>
+      <a href="blog.html">Блог</a> <span>/</span>
+      <span>Безопасность инфраструктуры</span>
+    </div>
+  </div>
+</section>
+
+<section class="page-content">
+  <div class="container">
+    <article class="article">
+      <img src="https://via.placeholder.com/800x400/002266/ffffff?text=VoIP+Security" alt="Безопасность VoIP" class="article__image">
+      <div class="article__meta">
+        <span><i class="far fa-calendar-alt"></i> 5 июля 2026</span>
+        <span><i class="far fa-clock"></i> 8 минут чтения</span>
+        <span><i class="far fa-user"></i> Дмитрий Волков</span>
+      </div>
+      <div class="article__content">
+
+<p>IP-телефония, при всех её преимуществах, открывает новые векторы для атак. SIP-флуд, фрод, перехват разговоров — это не теория, а реальные угрозы, с которыми сталкиваются компании ежедневно. Asterisk, благодаря гибкости настройки, позволяет построить защиту уровня Enterprise. Рассказываем, как это сделать.</p>
+
+<h2>Почему Asterisk выбирают для критически важной инфраструктуры</h2>
+<p>В отличие от закрытых АТС, Asterisk даёт администратору полный контроль над безопасностью:</p>
+<ul>
+  <li>Доступ к исходному коду — возможность проводить аудит безопасности</li>
+  <li>Гибкая настройка аутентификации и авторизации</li>
+  <li>Поддержка современных криптографических протоколов</li>
+  <li>Интеграция с внешними системами безопасности (Fail2ban, IDS/IPS)</li>
+</ul>
+
+<h2>Защита от SIP-атак</h2>
+<p>SIP-протокол уязвим к нескольким типам атак: регистрационный флуд, INVITE-флуд, подбор паролей, фальсификация Caller ID. Asterisk позволяет защититься на нескольких уровнях:</p>
+<ul>
+  <li><strong>Fail2ban:</strong> блокировка IP-адресов после N неудачных попыток авторизации. Настраивается за 30 минут.</li>
+  <li><strong>MD5-аутентификация:</strong> пароли никогда не передаются в открытом виде, используется хеширование.</li>
+  <li><strong>Ограничение регистраций:</strong> можно ограничить количество одновременных регистраций с одного IP.</li>
+  <li><strong>ACL (Access Control Lists):</strong> разрешение регистрации только с доверенных подсетей.</li>
+</ul>
+
+<h2>Шифрование голосового трафика и сигнализации</h2>
+<p>Без шифрования любой, у кого есть доступ к сети, может перехватить и прослушать разговор. Для защиты используются два механизма:</p>
+<ul>
+  <li><strong>TLS (Transport Layer Security):</strong> шифрует SIP-сигнализацию. Предотвращает перехват номеров, логинов и маршрутной информации.</li>
+  <li><strong>SRTP (Secure RTP):</strong> шифрует голосовой трафик. Даже если пакеты перехвачены, восстановить речь невозможно.</li>
+</ul>
+<p>Включение TLS+SRTP в Asterisk — это правка двух конфигурационных файлов и установка сертификата. После включения производительность падает не более чем на 3–5%, что незаметно для пользователей.</p>
+
+<h2>Аудит и логирование</h2>
+<p>Asterisk ведёт детальные логи всех событий: регистрации, звонки, ошибки аутентификации, изменения конфигурации. Эти логи можно направлять в SIEM-системы (Splunk, ELK Stack, MaxPatrol) для централизованного мониторинга.</p>
+<p>Настройка CDR (Call Detail Records) позволяет хранить полную историю звонков: кто, когда, кому звонил, длительность, использованный кодек, статус завершения. Эти данные необходимы для соответствия требованиям 242-ФЗ и для внутренних расследований инцидентов.</p>
+
+<h2>Изоляция VoIP-сети</h2>
+<p>Одна из лучших практик безопасности — полное разделение трафика телефонии и данных. Это реализуется через:</p>
+<ul>
+  <li><strong>VLAN (Voice VLAN):</strong> голосовой трафик изолирован на втором уровне (L2). Даже при компрометации рабочей станции злоумышленник не получит доступ к АТС.</li>
+  <li><strong>Firewall:</strong> правила, разрешающие SIP/IAX2 и RTP-трафик только между доверенными узлами. Все остальные порты закрыты.</li>
+  <li><strong>SBC (Session Border Controller):</strong> прокси-сервер для SIP-трафика, который скрывает внутреннюю топологию сети и фильтрует вредоносные пакеты.</li>
+</ul>
+
+<h2>Соответствие законодательству (242-ФЗ, 152-ФЗ)</h2>
+<p>Для компаний, работающих с персональными данными, Asterisk даёт возможности, необходимые для выполнения требований регуляторов:</p>
+<ul>
+  <li>Логирование всех действий администраторов и пользователей</li>
+  <li>Хранение записей разговоров в защищённом хранилище с разграничением доступа</li>
+  <li>Шифрование данных при передаче и хранении</li>
+  <li>Интеграция с СКЗИ (средства криптографической защиты информации) для ГОСТ-шифрования</li>
+</ul>
+
+<h2>Вывод</h2>
+<p>Безопасность IP-телефонии — это не разовое действие, а процесс. Asterisk предоставляет все инструменты для построения защищённой инфраструктуры: от базовой защиты от SIP-атак до соответствия отраслевым стандартам. Главное — правильно эти инструменты настроить. И это именно та задача, где опыт специалиста имеет решающее значение.</p>
+
+      </div>
+    </article>
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer__grid"><div class="footer__brand"><a href="index.html" class="logo">Astra<span>ITLink</span></a><p>Надёжные VoIP-решения на базе Asterisk для вашего бизнеса.</p></div><div><h4 class="footer__title">Навигация</h4><ul class="footer__links"><li><a href="index.html">Главная</a></li><li><a href="services.html">Услуги</a></li><li><a href="about.html">О компании</a></li><li><a href="portfolio.html">Кейсы</a></li><li><a href="blog.html">Блог</a></li><li><a href="contacts.html">Контакты</a></li></ul></div><div><h4 class="footer__title">Услуги</h4><ul class="footer__links"><li><a href="services.html">Виртуальная АТС</a></li><li><a href="services.html">SIP-телефония</a></li><li><a href="services.html">Настройка Asterisk</a></li><li><a href="services.html">Интеграция с CRM</a></li><li><a href="services.html">Запись разговоров</a></li><li><a href="services.html">Техподдержка</a></li></ul></div><div><h4 class="footer__title">Контакты</h4><div class="footer__contact-item"><i class="fas fa-map-marker-alt"></i> г. Астрахань, ул. Бабушкина, д. 60, офис 12</div><div class="footer__contact-item"><i class="fas fa-phone"></i> <a href="tel:+79220681794">+7 (922) 068-17-94</a></div><div class="footer__contact-item"><i class="fas fa-envelope"></i> <a href="mailto:info@astra-itlink.ru">info@astra-itlink.ru</a></div><div class="footer__social"><a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a><a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a><a href="#" aria-label="VK"><i class="fab fa-vk"></i></a><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a></div></div></div><div class="footer__bottom">&copy; 2026 AstraITLink. Все права защищены.</div></div></footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IP-телефония на Asterisk: от «звёздочки» к индивидуальным решениям | AstraITLink</title>
+  <meta name="description" content="Что такое Asterisk и почему он стал основой для индивидуальных VoIP-решений. Открытый код, гибкость, кастомизация.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%230055ff'/%3E%3Ctext x='50' y='62' text-anchor='middle' font-size='36' font-weight='bold' fill='white' font-family='Arial'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+
+<header class="header">
+  <div class="header__inner">
+    <a href="index.html" class="logo">Astra<span>ITLink</span></a>
+    <nav class="nav">
+      <ul class="nav__list">
+        <li><a href="index.html" class="nav__link">Главная</a></li>
+        <li><a href="services.html" class="nav__link">Услуги</a></li>
+        <li><a href="about.html" class="nav__link">О компании</a></li>
+        <li><a href="portfolio.html" class="nav__link">Кейсы</a></li>
+        <li><a href="blog.html" class="nav__link nav__link--active">Блог</a></li>
+        <li><a href="contacts.html" class="nav__link">Контакты</a></li>
+      </ul>
+    </nav>
+    <div class="header__cta">
+      <a href="tel:+79220681794" class="header__phone"><i class="fas fa-phone-alt"></i> +7 (922) 068-17-94</a>
+      <a href="contacts.html" class="btn btn--primary btn--sm">Связаться</a>
+    </div>
+    <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <h1 class="breadcrumbs__title">IP-телефония на Asterisk: от «звёздочки» к индивидуальным решениям для бизнеса</h1>
+    <div class="breadcrumbs__list">
+      <a href="index.html">Главная</a> <span>/</span>
+      <a href="blog.html">Блог</a> <span>/</span>
+      <span>Asterisk intro</span>
+    </div>
+  </div>
+</section>
+
+<section class="page-content">
+  <div class="container">
+    <article class="article">
+      <img src="https://via.placeholder.com/800x400/0055ff/ffffff?text=Asterisk+Intro" alt="Asterisk" class="article__image">
+      <div class="article__meta">
+        <span><i class="far fa-calendar-alt"></i> 20 июля 2026</span>
+        <span><i class="far fa-clock"></i> 6 минут чтения</span>
+        <span><i class="far fa-user"></i> Иван Петров</span>
+      </div>
+      <div class="article__content">
+
+<p>Asterisk — это не просто программная АТС. Это полноценная платформа для построения коммуникационных решений любого уровня сложности. Название переводится как «звёздочка», и за почти 25 лет своего существования Asterisk превратился в стандарт открытой телефонии, на котором строятся миллионы АТС по всему миру.</p>
+
+<h2>Открытый код как фундамент независимости</h2>
+<p>Главное отличие Asterisk от проприетарных АТС (Panasonic, Cisco CallManager, Avaya) — открытый исходный код. Это означает, что вы не привязаны к одному вендору, не платите за лицензии на каждого пользователя и можете модифицировать систему так, как нужно именно вашему бизнесу.</p>
+<p>Закрытые АТС часто работают по принципу «чёрного ящика»: вы получаете фиксированный набор функций и не можете повлиять на логику обработки звонков. С Asterisk всё иначе — вы сами решаете, как будет работать телефония.</p>
+
+<h2>Архитектура: от сервера к полноценной АТС</h2>
+<p>Asterisk превращает обычный сервер (или виртуальную машину) в мощную IP-АТС. В основе лежат несколько ключевых компонентов:</p>
+<ul>
+  <li><strong>Диалплан (Dialplan)</strong> — мозг системы. Набор правил, определяющих, что происходит со звонком: куда направить, какое голосовое меню воспроизвести, как записать разговор.</li>
+  <li><strong>Каналы (Channels)</strong> — модули для работы с разными протоколами: SIP, IAX2, H.323, а также аналоговыми и цифровыми линиями.</li>
+  <li><strong>Приложения (Applications)</strong> — встроенные функции: голосовая почта, конференции, очереди, IVR, запись и многое другое.</li>
+  <li><strong>AMI/ARI</strong> — интерфейсы для внешнего управления. Через них Asterisk интегрируется с CRM, биллингом, AI-системами.</li>
+</ul>
+
+<h2>Базовые функции, которые работают «из коробки»</h2>
+<p>Даже без доработок Asterisk предоставляет богатый функционал:</p>
+<ul>
+  <li><strong>Голосовая почта (Voicemail)</strong> — с пересылкой на email в аудио-формате.</li>
+  <li><strong>IVR (Голосовое меню)</strong> — многоуровневые меню с возможностью распознавания тонового набора.</li>
+  <li><strong>Конференции (MeetMe/ConfBridge)</strong> — аудио-конференции с управлением участниками.</li>
+  <li><strong>Очереди звонков (Queues)</strong> — распределение вызовов между операторами по заданным стратегиям.</li>
+  <li><strong>Запись разговоров (Monitor/MixMonitor)</strong> — автоматическая запись всех или выборочных звонков.</li>
+  <li><strong>Переадресация и маршрутизация</strong> — по времени, номеру, загрузке оператора, географическому признаку.</li>
+</ul>
+
+<h2>Главный драйвер — кастомизация</h2>
+<p>Сила Asterisk раскрывается тогда, когда бизнесу нужны нестандартные решения. Коробочные АТС (как облачные, так и on-premise) хороши ровно до того момента, пока вам не понадобится что-то уникальное:</p>
+<ul>
+  <li>Интеграция с внутренней ERP-системой по специфическому протоколу</li>
+  <li>Нестандартная логика маршрутизации с проверкой данных из внешней базы</li>
+  <li>AI-ассистент, который обрабатывает звонки на основе машинного обучения</li>
+  <li>Поддержка экзотических протоколов или оборудования</li>
+</ul>
+<p>В такие моменты проприетарные решения упираются в потолок своих возможностей. Asterisk же, благодаря открытой архитектуре, позволяет реализовать практически любую задачу.</p>
+
+<h2>Вывод</h2>
+<p>Asterisk — это не просто «ещё одна телефонная станция». Это конструктор, из которого можно собрать решение любой сложности: от двух линий для небольшого офиса до распределённого кластера на тысячи абонентов с AI-аналитикой и интеграцией во всю IT-инфраструктуру предприятия. И именно эта гибкость делает его выбором №1 для тех, кто мыслит на шаг вперёд.</p>
+
+      </div>
+    </article>
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer__grid"><div class="footer__brand"><a href="index.html" class="logo">Astra<span>ITLink</span></a><p>Надёжные VoIP-решения на базе Asterisk для вашего бизнеса.</p></div><div><h4 class="footer__title">Навигация</h4><ul class="footer__links"><li><a href="index.html">Главная</a></li><li><a href="services.html">Услуги</a></li><li><a href="about.html">О компании</a></li><li><a href="portfolio.html">Кейсы</a></li><li><a href="blog.html">Блог</a></li><li><a href="contacts.html">Контакты</a></li></ul></div><div><h4 class="footer__title">Услуги</h4><ul class="footer__links"><li><a href="services.html">Виртуальная АТС</a></li><li><a href="services.html">SIP-телефония</a></li><li><a href="services.html">Настройка Asterisk</a></li><li><a href="services.html">Интеграция с CRM</a></li><li><a href="services.html">Запись разговоров</a></li><li><a href="services.html">Техподдержка</a></li></ul></div><div><h4 class="footer__title">Контакты</h4><div class="footer__contact-item"><i class="fas fa-map-marker-alt"></i> г. Астрахань, ул. Бабушкина, д. 60, офис 12</div><div class="footer__contact-item"><i class="fas fa-phone"></i> <a href="tel:+79220681794">+7 (922) 068-17-94</a></div><div class="footer__contact-item"><i class="fas fa-envelope"></i> <a href="mailto:info@astra-itlink.ru">info@astra-itlink.ru</a></div><div class="footer__social"><a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a><a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a><a href="#" aria-label="VK"><i class="fab fa-vk"></i></a><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a></div></div></div><div class="footer__bottom">&copy; 2026 AstraITLink. Все права защищены.</div></div></footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

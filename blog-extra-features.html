@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Какие фичи можно «докрутить» к Asterisk | AstraITLink</title>
+  <meta name="description" content="Расширяем функционал Asterisk: шифрование, AI-секретарь, умные IVR, интеграция с софтфонами, оптимизация IAX2.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%230055ff'/%3E%3Ctext x='50' y='62' text-anchor='middle' font-size='36' font-weight='bold' fill='white' font-family='Arial'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+
+<header class="header">
+  <div class="header__inner">
+    <a href="index.html" class="logo">Astra<span>ITLink</span></a>
+    <nav class="nav">
+      <ul class="nav__list">
+        <li><a href="index.html" class="nav__link">Главная</a></li>
+        <li><a href="services.html" class="nav__link">Услуги</a></li>
+        <li><a href="about.html" class="nav__link">О компании</a></li>
+        <li><a href="portfolio.html" class="nav__link">Кейсы</a></li>
+        <li><a href="blog.html" class="nav__link nav__link--active">Блог</a></li>
+        <li><a href="contacts.html" class="nav__link">Контакты</a></li>
+      </ul>
+    </nav>
+    <div class="header__cta">
+      <a href="tel:+79220681794" class="header__phone"><i class="fas fa-phone-alt"></i> +7 (922) 068-17-94</a>
+      <a href="contacts.html" class="btn btn--primary btn--sm">Связаться</a>
+    </div>
+    <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <h1 class="breadcrumbs__title">Расширяем горизонты: какие фичи можно «докрутить» к Asterisk</h1>
+    <div class="breadcrumbs__list">
+      <a href="index.html">Главная</a> <span>/</span>
+      <a href="blog.html">Блог</a> <span>/</span>
+      <span>Фичи Asterisk</span>
+    </div>
+  </div>
+</section>
+
+<section class="page-content">
+  <div class="container">
+    <article class="article">
+      <img src="https://via.placeholder.com/800x400/0055ff/ffffff?text=Extra+Features" alt="Дополнительные фичи" class="article__image">
+      <div class="article__meta">
+        <span><i class="far fa-calendar-alt"></i> 12 июля 2026</span>
+        <span><i class="far fa-clock"></i> 6 минут чтения</span>
+        <span><i class="far fa-user"></i> Иван Петров</span>
+      </div>
+      <div class="article__content">
+
+<p>Asterisk сам по себе — мощная платформа, но его истинная сила раскрывается через расширения. Дополнительные модули и надстройки превращают стандартную IP-АТС в высокотехнологичный коммуникационный центр. Рассказываем о пяти полезных «плюшках», которые можно добавить к вашей системе.</p>
+
+<h2>1. Продвинутая безопасность: TLS и SRTP</h2>
+<p>Базовый Asterisk передаёт голосовой трафик в незашифрованном виде (RTP). Этого недостаточно для компаний, работающих с конфиденциальными данными. Подключение TLS (Transport Layer Security) для сигнализации и SRTP (Secure RTP) для голоса полностью шифрует трафик.</p>
+<p>Настройка занимает 2–3 часа: генерация сертификатов, конфигурация sip.conf и rtp.conf, обновление настроек на стороне клиентов. После включения перехват трафика становится бесполезным для злоумышленника.</p>
+
+<h2>2. Умные IVR с распознаванием естественной речи (NLU)</h2>
+<p>Классические IVR с тоновым набором («нажмите 1, чтобы…») раздражают клиентов. Современная альтернатива — голосовые меню с пониманием естественной речи. Asterisk через ARI передаёт аудиопоток в LLM-сервис (например, YandexGPT или GigaChat), который распознаёт намерение звонящего.</p>
+<p>Пример: клиент говорит «Хочу узнать статус заказа» — система определяет интент, проверяет номер заказа по CRM и сообщает статус голосом. Без нажатия кнопок.</p>
+
+<h2>3. AI-секретарь</h2>
+<p>Логичное развитие умных IVR — полностью автономный голосовой ассистент. AI-секретарь принимает входящие звонки, определяет цель обращения, отвечает на типовые вопросы, создаёт задачи в CRM и переводит сложные вызовы на живого оператора.</p>
+<p>Как это работает:</p>
+<ul>
+  <li>Звонок поступает на Asterisk</li>
+  <li>Asterisk через ARI передаёт аудио в AI-сервис</li>
+  <li>AI распознаёт речь, определяет интент, формирует ответ</li>
+  <li>Ответ синтезируется голосом и воспроизводится звонящему</li>
+  <li>При необходимости звонок переводится на оператора вместе с контекстом разговора</li>
+</ul>
+<p>Внедрение AI-секретаря обходится от 50 000 рублей и высвобождает до 70% времени операторов.</p>
+
+<h2>4. Мобильность сотрудников через софтфоны</h2>
+<p>Asterisk позволяет сотрудникам работать из любой точки мира, используя корпоративный номер на смартфоне. Настройка SIP-софтфона (Zoiper, MicroSIP, Linphone) занимает 5 минут. При этом:</p>
+<ul>
+  <li>Звонок с корпоративного номера выглядит как обычный офисный вызов</li>
+  <li>Все разговоры записываются и хранятся централизованно</li>
+  <li>Доступна та же маршрутизация и очереди, что и в офисе</li>
+  <li>Можно настроить автоматическое переключение между Wi-Fi и мобильным интернетом</li>
+</ul>
+
+<h2>5. Оптимизация межофисной связи через IAX2</h2>
+<p>При соединении нескольких офисов через SIP по интернету часто возникают проблемы с качеством голоса (джиттер, потеря пакетов). Протокол IAX2 (Inter-Asterisk eXchange), разработанный специально для связи между Asterisk-серверами, эффективнее использует полосу пропускания.</p>
+<p>IAX2 объединяет голос и сигнализацию в один UDP-поток, уменьшая накладные расходы на 50% по сравнению с SIP. При плохом качестве соединения IAX2 автоматически адаптирует кодек, сохраняя разборчивость речи. Переход на IAX2 между офисами часто решает проблемы качества без апгрейда канала.</p>
+
+<h2>Вывод</h2>
+<p>Asterisk — это платформа, которая растёт вместе с вашим бизнесом. Начинать можно с базового функционала, а по мере необходимости «докручивать» новые возможности: от шифрования до AI-секретаря. И каждый такой апгрейд даёт ощутимый бизнес-результат.</p>
+
+      </div>
+    </article>
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer__grid"><div class="footer__brand"><a href="index.html" class="logo">Astra<span>ITLink</span></a><p>Надёжные VoIP-решения на базе Asterisk для вашего бизнеса.</p></div><div><h4 class="footer__title">Навигация</h4><ul class="footer__links"><li><a href="index.html">Главная</a></li><li><a href="services.html">Услуги</a></li><li><a href="about.html">О компании</a></li><li><a href="portfolio.html">Кейсы</a></li><li><a href="blog.html">Блог</a></li><li><a href="contacts.html">Контакты</a></li></ul></div><div><h4 class="footer__title">Услуги</h4><ul class="footer__links"><li><a href="services.html">Виртуальная АТС</a></li><li><a href="services.html">SIP-телефония</a></li><li><a href="services.html">Настройка Asterisk</a></li><li><a href="services.html">Интеграция с CRM</a></li><li><a href="services.html">Запись разговоров</a></li><li><a href="services.html">Техподдержка</a></li></ul></div><div><h4 class="footer__title">Контакты</h4><div class="footer__contact-item"><i class="fas fa-map-marker-alt"></i> г. Астрахань, ул. Бабушкина, д. 60, офис 12</div><div class="footer__contact-item"><i class="fas fa-phone"></i> <a href="tel:+79220681794">+7 (922) 068-17-94</a></div><div class="footer__contact-item"><i class="fas fa-envelope"></i> <a href="mailto:info@astra-itlink.ru">info@astra-itlink.ru</a></div><div class="footer__social"><a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a><a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a><a href="#" aria-label="VK"><i class="fab fa-vk"></i></a><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a></div></div></div><div class="footer__bottom">&copy; 2026 AstraITLink. Все права защищены.</div></div></footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
