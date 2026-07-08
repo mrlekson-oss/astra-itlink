@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Телефонная книга | AstraITLink</title>
+  <meta name="description" content="Корпоративная телефонная книга AstraITLink — поиск сотрудников по имени, отделу, должности. Клик-ту-колл.">
+  <meta property="og:title" content="Телефонная книга | AstraITLink">
+  <meta property="og:description" content="Внутрикорпоративный справочник сотрудников с поиском и клик-ту-колл.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%230055ff'/%3E%3Ctext x='50' y='62' text-anchor='middle' font-size='36' font-weight='bold' fill='white' font-family='Arial'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+  <style>
+    .phonebook {
+      padding: 120px 0 60px;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #e8f0ff 0%, #f0f4ff 100%);
+    }
+    .phonebook__header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .phonebook__title {
+      font-family: var(--font-head);
+      font-size: 2.2rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .phonebook__title span {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .phonebook__subtitle {
+      color: var(--text-gray);
+      font-size: 1rem;
+    }
+    .phonebook__search {
+      display: flex;
+      gap: 12px;
+      max-width: 700px;
+      margin: 0 auto 24px;
+      flex-wrap: wrap;
+    }
+    .phonebook__search-input {
+      flex: 1;
+      padding: 14px 20px;
+      border: 2px solid var(--border);
+      border-radius: 50px;
+      font-size: 1rem;
+      outline: none;
+      transition: var(--transition);
+      background: var(--bg-white);
+    }
+    .phonebook__search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0,85,255,0.1);
+    }
+    .phonebook__filter {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .phonebook__filter-btn {
+      padding: 8px 20px;
+      border-radius: 50px;
+      border: 2px solid var(--border);
+      background: var(--bg-white);
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.85rem;
+      transition: var(--transition);
+      color: var(--text-gray);
+    }
+    .phonebook__filter-btn.active,
+    .phonebook__filter-btn:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+    .phonebook__stats {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 32px;
+      font-size: 0.9rem;
+      color: var(--text-gray);
+    }
+    .phonebook__stats span { font-weight: 700; color: var(--primary); }
+    .phonebook__departments { max-width: 1000px; margin: 0 auto; }
+    .phonebook__dept {
+      margin-bottom: 32px;
+      background: var(--bg-white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+    .phonebook__dept.hidden { display: none; }
+    .phonebook__dept-header {
+      padding: 16px 24px;
+      background: linear-gradient(135deg, var(--primary-light), #dce5ff);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .phonebook__dept-header i:first-child {
+      font-size: 1.3rem;
+      color: var(--primary);
+      width: 24px;
+    }
+    .phonebook__dept-header h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      flex: 1;
+    }
+    .phonebook__dept-count {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      background: rgba(255,255,255,0.6);
+      padding: 2px 12px;
+      border-radius: 50px;
+    }
+    .phonebook__dept-toggle {
+      color: var(--primary);
+      transition: var(--transition);
+    }
+    .phonebook__dept.collapsed .phonebook__dept-toggle {
+      transform: rotate(-90deg);
+    }
+    .phonebook__dept.collapsed .phonebook__dept-body {
+      display: none;
+    }
+    .phonebook__dept-body {
+      padding: 8px;
+    }
+    .phonebook__employee {
+      display: grid;
+      grid-template-columns: 200px 1fr 140px 140px 100px;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+    .phonebook__employee:hover {
+      background: var(--bg-light);
+    }
+    .phonebook__employee.hidden { display: none; }
+    .phonebook__employee-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .phonebook__employee-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+    .phonebook__employee-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .phonebook__employee-position {
+      font-size: 0.85rem;
+      color: var(--text-gray);
+    }
+    .phonebook__employee-email {
+      font-size: 0.85rem;
+      color: var(--primary);
+    }
+    .phonebook__employee-email:hover { text-decoration: underline; }
+    .phonebook__employee-ext {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      text-align: center;
+    }
+    .phonebook__employee-ext small {
+      display: block;
+      font-weight: 400;
+      font-size: 0.7rem;
+      color: var(--text-light);
+    }
+    .phonebook__employee-call {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      transition: var(--transition);
+      margin: auto;
+    }
+    .phonebook__employee-call:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+    .phonebook__empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-light);
+    }
+    .phonebook__empty i { font-size: 3rem; margin-bottom: 16px; }
+    .phonebook__empty h3 { margin-bottom: 8px; color: var(--text-gray); }
+    .phonebook__cta {
+      text-align: center;
+      padding: 40px 0;
+    }
+    .phonebook__cta p {
+      margin-bottom: 16px;
+      color: var(--text-gray);
+    }
+
+    @media (max-width: 900px) {
+      .phonebook__employee {
+        grid-template-columns: 1fr 100px;
+        grid-template-rows: auto auto;
+      }
+      .phonebook__employee-info { grid-column: 1; }
+      .phonebook__employee-email { grid-column: 1; }
+      .phonebook__employee-ext { grid-column: 2; grid-row: 1/3; }
+      .phonebook__employee-call { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); }
+      .phonebook__employee { position: relative; }
+    }
+    @media (max-width: 600px) {
+      .phonebook__employee { grid-template-columns: 1fr 60px; }
+      .phonebook__employee-email { display: none; }
+      .phonebook__stats { flex-direction: column; gap: 8px; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header__inner">
+    <a href="index.html" class="logo">AstraITLink</a>
+    <nav class="nav">
+      <ul class="nav__list">
+        <li><a href="index.html" class="nav__link">Главная</a></li>
+        <li><a href="services.html" class="nav__link">Услуги</a></li>
+        <li><a href="about.html" class="nav__link">О компании</a></li>
+        <li><a href="portfolio.html" class="nav__link">Кейсы</a></li>
+        <li><a href="blog.html" class="nav__link">Блог</a></li>
+        <li><a href="contacts.html" class="nav__link">Контакты</a></li>
+      </ul>
+    </nav>
+    <div class="header__cta">
+      <a href="tel:+79220681794" class="header__phone"><i class="fas fa-phone-alt"></i> +7 (922) 068-17-94</a>
+      <a href="contacts.html" class="btn btn--primary btn--sm">Связаться</a>
+    </div>
+    <button class="burger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="phonebook">
+  <div class="container">
+    <div class="phonebook__header">
+      <h1 class="phonebook__title">Телефонная книга <span>AstraITLink</span></h1>
+      <p class="phonebook__subtitle">Внутрикорпоративный справочник сотрудников — найди любого за секунду</p>
+    </div>
+
+    <div class="phonebook__search">
+      <input type="text" class="phonebook__search-input" id="pbSearch" placeholder="Поиск по имени, должности, отделу, email..." autofocus>
+    </div>
+
+    <div class="phonebook__filter" id="pbFilter"></div>
+
+    <div class="phonebook__stats" id="pbStats"></div>
+
+    <div class="phonebook__departments" id="pbDepartments"></div>
+
+    <div class="phonebook__empty" id="pbEmpty" style="display:none;">
+      <i class="fas fa-search"></i>
+      <h3>Ничего не найдено</h3>
+      <p>Попробуйте изменить запрос или сбросьте фильтр</p>
+      <button class="btn btn--outline" onclick="resetAll()">Сбросить</button>
+    </div>
+
+    <div class="phonebook__cta">
+      <p>Это демонстрационная версия корпоративной телефонной книги.<br>Полная версия включает интеграцию с Active Directory, LDAP и автоматическую синхронизацию.</p>
+      <a href="contacts.html" class="btn btn--primary"><i class="fas fa-cart-plus"></i> Заказать внедрение</a>
+      <a href="index.html" class="btn btn--outline" style="margin-left:12px;"><i class="fas fa-arrow-left"></i> На главную</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="logo">AstraITLink</a>
+        <p>Надёжные VoIP-решения на базе Asterisk для вашего бизнеса. Настройка, внедрение и круглосуточная поддержка.</p>
+      </div>
+      <div>
+        <h4 class="footer__title">Навигация</h4>
+        <ul class="footer__links">
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="services.html">Услуги</a></li>
+          <li><a href="about.html">О компании</a></li>
+          <li><a href="portfolio.html">Кейсы</a></li>
+          <li><a href="blog.html">Блог</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__title">Услуги</h4>
+        <ul class="footer__links">
+          <li><a href="services.html">Виртуальная АТС</a></li>
+          <li><a href="services.html">SIP-телефония</a></li>
+          <li><a href="services.html">Настройка Asterisk</a></li>
+          <li><a href="services.html">Интеграция с CRM</a></li>
+          <li><a href="services.html">Запись разговоров</a></li>
+          <li><a href="services.html">Техподдержка</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__title">Контакты</h4>
+        <div class="footer__contact-item"><i class="fas fa-map-marker-alt"></i> г. Астрахань, ул. Бабушкина, д. 60, офис 12</div>
+        <div class="footer__contact-item"><i class="fas fa-phone"></i> <a href="tel:+79220681794">+7 (922) 068-17-94</a></div>
+        <div class="footer__contact-item"><i class="fas fa-envelope"></i> <a href="mailto:info@astra-itlink.ru">info@astra-itlink.ru</a></div>
+        <div class="footer__social">
+          <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" aria-label="VK"><i class="fab fa-vk"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      &copy; 2026 AstraITLink. Все права защищены.
+    </div>
+  </div>
+</footer>
+
+<script>
+var employees = [
+  { name: 'Александр Петров', position: 'Генеральный директор', dept: 'Руководство', email: 'ap@astra-itlink.ru', ext: '100' },
+  { name: 'Елена Соколова', position: 'Финансовый директор', dept: 'Руководство', email: 'es@astra-itlink.ru', ext: '101' },
+  { name: 'Михаил Иванов', position: 'Технический директор', dept: 'Руководство', email: 'mi@astra-itlink.ru', ext: '102' },
+  { name: 'Ольга Кузнецова', position: 'Коммерческий директор', dept: 'Руководство', email: 'ok@astra-itlink.ru', ext: '103' },
+  { name: 'Дмитрий Смирнов', position: 'Ведущий инженер VoIP', dept: 'Технический отдел', email: 'ds@astra-itlink.ru', ext: '201' },
+  { name: 'Анна Белова', position: 'Инженер IP-телефонии', dept: 'Технический отдел', email: 'ab@astra-itlink.ru', ext: '202' },
+  { name: 'Сергей Козлов', position: 'Системный администратор', dept: 'Технический отдел', email: 'sk@astra-itlink.ru', ext: '203' },
+  { name: 'Наталья Морозова', position: 'Инженер техподдержки', dept: 'Технический отдел', email: 'nm@astra-itlink.ru', ext: '204' },
+  { name: 'Павел Новиков', position: 'DevOps-инженер', dept: 'Технический отдел', email: 'pn@astra-itlink.ru', ext: '205' },
+  { name: 'Ирина Волкова', position: 'Ведущий разработчик', dept: 'Разработка', email: 'iv@astra-itlink.ru', ext: '301' },
+  { name: 'Алексей Фёдоров', position: 'Разработчик Asterisk', dept: 'Разработка', email: 'af@astra-itlink.ru', ext: '302' },
+  { name: 'Татьяна Павлова', position: 'Frontend-разработчик', dept: 'Разработка', email: 'tp@astra-itlink.ru', ext: '303' },
+  { name: 'Константин Зайцев', position: 'Разработчик CRM-интеграций', dept: 'Разработка', email: 'kz@astra-itlink.ru', ext: '304' },
+  { name: 'Мария Григорьева', position: 'Руководитель отдела продаж', dept: 'Продажи', email: 'mg@astra-itlink.ru', ext: '401' },
+  { name: 'Иван Титов', position: 'Менеджер по продажам', dept: 'Продажи', email: 'it@astra-itlink.ru', ext: '402' },
+  { name: 'Екатерина Орлова', position: 'Менеджер по продажам', dept: 'Продажи', email: 'eo@astra-itlink.ru', ext: '403' },
+  { name: 'Денис Кузьмин', position: 'Менеджер по работе с клиентами', dept: 'Продажи', email: 'dk@astra-itlink.ru', ext: '404' },
+  { name: 'Юлия Васильева', position: 'Руководитель маркетинга', dept: 'Маркетинг', email: 'jv@astra-itlink.ru', ext: '501' },
+  { name: 'Артём Николаев', position: 'SMM-менеджер', dept: 'Маркетинг', email: 'an@astra-itlink.ru', ext: '502' },
+  { name: 'Виктория Семёнова', position: 'Дизайнер', dept: 'Маркетинг', email: 'vs@astra-itlink.ru', ext: '503' },
+  { name: 'Николай Попов', position: 'Главный бухгалтер', dept: 'Бухгалтерия', email: 'np@astra-itlink.ru', ext: '601' },
+  { name: 'Людмила Крылова', position: 'Бухгалтер', dept: 'Бухгалтерия', email: 'lk@astra-itlink.ru', ext: '602' },
+  { name: 'Галина Медведева', position: 'Офис-менеджер', dept: 'Административный отдел', email: 'gm@astra-itlink.ru', ext: '701' },
+  { name: 'Владимир Степанов', position: 'Юрист', dept: 'Административный отдел', email: 'vs2@astra-itlink.ru', ext: '702' },
+  { name: 'Роман Жуков', position: 'Руководитель филиала (Москва)', dept: 'Филиалы', email: 'rz@astra-itlink.ru', ext: '801' },
+  { name: 'Анастасия Кириллова', position: 'Руководитель филиала (СПб)', dept: 'Филиалы', email: 'ak@astra-itlink.ru', ext: '802' },
+  { name: 'Максим Фролов', position: 'Руководитель филиала (Казань)', dept: 'Филиалы', email: 'mf@astra-itlink.ru', ext: '803' },
+  { name: 'Евгения Максимова', position: 'HR-менеджер', dept: 'HR', email: 'em@astra-itlink.ru', ext: '901' },
+  { name: 'Василий Гусев', position: 'Специалист по охране труда', dept: 'HR', email: 'vg@astra-itlink.ru', ext: '902' },
+  { name: 'Пётр Лебедев', position: 'Курьер', dept: 'Хозяйственный отдел', email: 'pl@astra-itlink.ru', ext: '1001' },
+];
+
+var deptIcons = {
+  'Руководство': 'fa-crown',
+  'Технический отдел': 'fa-headset',
+  'Разработка': 'fa-code',
+  'Продажи': 'fa-handshake',
+  'Маркетинг': 'fa-bullhorn',
+  'Бухгалтерия': 'fa-calculator',
+  'Административный отдел': 'fa-folder-open',
+  'Филиалы': 'fa-building',
+  'HR': 'fa-users',
+  'Хозяйственный отдел': 'fa-tools',
+};
+
+function getDepts() {
+  var d = {};
+  employees.forEach(function (e) {
+    if (!d[e.dept]) d[e.dept] = [];
+    d[e.dept].push(e);
+  });
+  return d;
+}
+
+function getInitials(name) {
+  return name.split(' ').map(function (w) { return w[0]; }).join('');
+}
+
+function render() {
+  var depts = getDepts();
+  var filterEl = document.getElementById('pbFilter');
+  var deptsEl = document.getElementById('pbDepartments');
+  var statsEl = document.getElementById('pbStats');
+  var emptyEl = document.getElementById('pbEmpty');
+
+  // Filter buttons
+  var allDepts = Object.keys(depts);
+  var filterHtml = '<button class="phonebook__filter-btn active" data-dept="all">Все отделы</button>';
+  allDepts.forEach(function (d) {
+    filterHtml += '<button class="phonebook__filter-btn" data-dept="' + d + '">' + d + '</button>';
+  });
+  filterEl.innerHTML = filterHtml;
+
+  // Stats
+  statsEl.innerHTML = 'Всего сотрудников: <span>' + employees.length + '</span> &nbsp;|&nbsp; Отделов: <span>' + allDepts.length + '</span> &nbsp;|&nbsp; Внутренних номеров: <span>' + employees.length + '</span>';
+
+  // Departments
+  var html = '';
+  allDepts.forEach(function (d) {
+    var icon = deptIcons[d] || 'fa-folder';
+    html += '<div class="phonebook__dept" data-dept="' + d + '">';
+    html += '<div class="phonebook__dept-header" onclick="toggleDept(this)">';
+    html += '<i class="fas ' + icon + '"></i>';
+    html += '<h3>' + d + '</h3>';
+    html += '<span class="phonebook__dept-count">' + depts[d].length + '</span>';
+    html += '<i class="fas fa-chevron-down phonebook__dept-toggle"></i>';
+    html += '</div>';
+    html += '<div class="phonebook__dept-body">';
+    depts[d].forEach(function (e) {
+      html += '<div class="phonebook__employee" data-name="' + e.name.toLowerCase() + '" data-position="' + e.position.toLowerCase() + '" data-dept="' + e.dept + '" data-email="' + e.email.toLowerCase() + '">';
+      html += '<div class="phonebook__employee-info">';
+      html += '<div class="phonebook__employee-avatar">' + getInitials(e.name) + '</div>';
+      html += '<div><div class="phonebook__employee-name">' + e.name + '</div><div class="phonebook__employee-position">' + e.position + '</div></div>';
+      html += '</div>';
+      html += '<a href="mailto:' + e.email + '" class="phonebook__employee-email">' + e.email + '</a>';
+      html += '<div class="phonebook__employee-ext">' + e.ext + ' <small>внутр.</small></div>';
+      html += '<a href="tel:+79220681794" class="phonebook__employee-call" title="Позвонить"><i class="fas fa-phone"></i></a>';
+      html += '</div>';
+    });
+    html += '</div></div>';
+  });
+  deptsEl.innerHTML = html;
+  emptyEl.style.display = 'none';
+
+  // Filter click
+  document.querySelectorAll('.phonebook__filter-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.phonebook__filter-btn').forEach(function (b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      var dept = this.getAttribute('data-dept');
+      document.querySelectorAll('.phonebook__dept').forEach(function (d) {
+        if (dept === 'all' || d.getAttribute('data-dept') === dept) {
+          d.classList.remove('hidden');
+        } else {
+          d.classList.add('hidden');
+        }
+      });
+    });
+  });
+}
+
+function toggleDept(header) {
+  header.parentElement.classList.toggle('collapsed');
+}
+
+function resetAll() {
+  document.getElementById('pbSearch').value = '';
+  document.getElementById('pbEmpty').style.display = 'none';
+  document.querySelectorAll('.phonebook__employee').forEach(function (e) { e.classList.remove('hidden'); });
+  document.querySelectorAll('.phonebook__dept').forEach(function (d) { d.classList.remove('hidden'); });
+  document.querySelectorAll('.phonebook__filter-btn').forEach(function (b) { b.classList.remove('active'); });
+  document.querySelector('.phonebook__filter-btn[data-dept="all"]').classList.add('active');
+  document.getElementById('pbSearch').focus();
+}
+
+// Search
+document.addEventListener('DOMContentLoaded', function () {
+  render();
+
+  document.getElementById('pbSearch').addEventListener('input', function () {
+    var q = this.value.trim().toLowerCase();
+    var empty = document.getElementById('pbEmpty');
+    var found = 0;
+
+    document.querySelectorAll('.phonebook__employee').forEach(function (e) {
+      var name = e.getAttribute('data-name');
+      var pos = e.getAttribute('data-position');
+      var dept = e.getAttribute('data-dept');
+      var email = e.getAttribute('data-email');
+      var match = name.indexOf(q) > -1 || pos.indexOf(q) > -1 || dept.indexOf(q) > -1 || email.indexOf(q) > -1;
+      if (!q || match) {
+        e.classList.remove('hidden');
+        found++;
+      } else {
+        e.classList.add('hidden');
+      }
+    });
+
+    // Show/hide departments
+    document.querySelectorAll('.phonebook__dept').forEach(function (d) {
+      var visible = d.querySelectorAll('.phonebook__employee:not(.hidden)').length > 0;
+      if (!q || visible) {
+        d.classList.remove('hidden');
+      } else {
+        d.classList.add('hidden');
+      }
+    });
+
+    if (!q || found > 0) {
+      empty.style.display = 'none';
+    } else {
+      empty.style.display = 'block';
+    }
+  });
+});
+</script>
+</body>
+</html>
