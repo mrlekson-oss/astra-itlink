@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Интеграция телефонии с CRM: пошаговое руководство | AstraITLink</title>
+  <meta name="description" content="Подробная инструкция по интеграции Asterisk с amoCRM, Битрикс24 и 1С: API, модули, настройка, результаты.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%230055ff'/%3E%3Ctext x='50' y='62' text-anchor='middle' font-size='36' font-weight='bold' fill='white' font-family='Arial'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+
+<header class="header">
+  <div class="header__inner">
+    <a href="index.html" class="logo">Astra<span>ITLink</span></a>
+    <nav class="nav">
+      <ul class="nav__list">
+        <li><a href="index.html" class="nav__link">Главная</a></li>
+        <li><a href="services.html" class="nav__link">Услуги</a></li>
+        <li><a href="about.html" class="nav__link">О компании</a></li>
+        <li><a href="portfolio.html" class="nav__link">Кейсы</a></li>
+        <li><a href="blog.html" class="nav__link nav__link--active">Блог</a></li>
+        <li><a href="contacts.html" class="nav__link">Контакты</a></li>
+      </ul>
+    </nav>
+    <div class="header__cta">
+      <a href="tel:+74951234567" class="header__phone"><i class="fas fa-phone-alt"></i> +7 (495) 123-45-67</a>
+      <a href="contacts.html" class="btn btn--primary btn--sm">Связаться</a>
+    </div>
+    <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <h1 class="breadcrumbs__title">Интеграция телефонии с CRM: пошаговое руководство</h1>
+    <div class="breadcrumbs__list">
+      <a href="index.html">Главная</a>
+      <span>/</span>
+      <a href="blog.html">Блог</a>
+      <span>/</span>
+      <span>CRM интеграция</span>
+    </div>
+  </div>
+</section>
+
+<section class="page-content">
+  <div class="container">
+    <article class="article">
+      <img src="https://via.placeholder.com/800x400/003399/ffffff?text=CRM+Integration" alt="CRM Integration" class="article__image">
+      <div class="article__meta">
+        <span><i class="far fa-calendar-alt"></i> 10 мая 2026</span>
+        <span><i class="far fa-clock"></i> 6 минут чтения</span>
+        <span><i class="far fa-user"></i> Анна Смирнова</span>
+      </div>
+      <div class="article__content">
+        <p>Интеграция телефонии с CRM — один из самых эффективных способов повысить продажи и качество обслуживания. Когда менеджер видит карточку клиента до того, как поднял трубку, конверсия растёт на 20–30%. Разберём пошаговый процесс настройки.</p>
+
+        <h2>Шаг 1. Выбор способа интеграции</h2>
+        <p>Существует три основных подхода:</p>
+        <ul>
+          <li><strong>Виджет CRM</strong> — готовый модуль, который устанавливается в интерфейс CRM. Подходит для amoCRM и Битрикс24.</li>
+          <li><strong>API-интеграция</strong> — прямое соединение Asterisk с CRM через REST API. Даёт максимальную гибкость.</li>
+          <li><strong>Webhook</strong> — Asterisk отправляет HTTP-запросы в CRM при событиях (звонок, завершение).</li>
+        </ul>
+
+        <h2>Шаг 2. Настройка Asterisk</h2>
+        <p>Вам потребуется настроить AMI (Asterisk Manager Interface) для внешнего управления, а также CDR (Call Detail Records) для получения данных о звонках. Пример базовой конфигурации:</p>
+        <p>Убедитесь, что в /etc/asterisk/manager.conf включён доступ, настроен cdr.conf для записи CDR в базу данных и настроен ARI для интеграции.</p>
+
+        <h2>Шаг 3. Установка модуля CRM</h2>
+        <p>Для amoCRM установите готовый виджет из маркетплейса или используйте наше API-решение. Для Битрикс24 — модуль из Market. Для 1С потребуется написание коннектора через HTTP-сервисы.</p>
+        <p>После установки укажите данные вашего сервера Asterisk (IP, порт, логин, пароль AMI). Проверьте соединение.</p>
+
+        <h2>Шаг 4. Настройка сценариев</h2>
+        <p>Определите, какие действия должны происходить при звонке:</p>
+        <ul>
+          <li>При входящем звонке — поиск номера в CRM и открытие карточки</li>
+          <li>Автоматическое создание сделки при первом звонке</li>
+          <li>Запись разговора и прикрепление к карточке</li>
+          <li>Автообзвон по сценариям (для ретеншн)</li>
+        </ul>
+
+        <h2>Шаг 5. Тестирование и запуск</h2>
+        <p>Проверьте все сценарии: входящий звонок с существующего и нового номера, исходящий звонок, перевод, трёхсторонняя конференция. Убедитесь, что записи загружаются в CRM.</p>
+
+        <p>После внедрения вы получите единую экосистему, где каждый звонок становится частью клиентской истории. Наша команда помогает с интеграцией любого уровня сложности — от виджета до полного кастомного решения.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer__grid"><div class="footer__brand"><a href="index.html" class="logo">Astra<span>ITLink</span></a><p>Надёжные VoIP-решения на базе Asterisk для вашего бизнеса.</p></div><div><h4 class="footer__title">Навигация</h4><ul class="footer__links"><li><a href="index.html">Главная</a></li><li><a href="services.html">Услуги</a></li><li><a href="about.html">О компании</a></li><li><a href="portfolio.html">Кейсы</a></li><li><a href="blog.html">Блог</a></li><li><a href="contacts.html">Контакты</a></li></ul></div><div><h4 class="footer__title">Услуги</h4><ul class="footer__links"><li><a href="services.html">Виртуальная АТС</a></li><li><a href="services.html">SIP-телефония</a></li><li><a href="services.html">Настройка Asterisk</a></li><li><a href="services.html">Интеграция с CRM</a></li><li><a href="services.html">Запись разговоров</a></li><li><a href="services.html">Техподдержка</a></li></ul></div><div><h4 class="footer__title">Контакты</h4><div class="footer__contact-item"><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Технологическая, д. 15</div><div class="footer__contact-item"><i class="fas fa-phone"></i> <a href="tel:+74951234567">+7 (495) 123-45-67</a></div><div class="footer__contact-item"><i class="fas fa-envelope"></i> <a href="mailto:info@astra-itlink.ru">info@astra-itlink.ru</a></div><div class="footer__social"><a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a><a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a><a href="#" aria-label="VK"><i class="fab fa-vk"></i></a><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a></div></div></div><div class="footer__bottom">&copy; 2026 AstraITLink. Все права защищены.</div></div></footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

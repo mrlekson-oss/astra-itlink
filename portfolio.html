@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кейсы | AstraITLink — Реализованные проекты</title>
+  <meta name="description" content="Примеры внедрения IP-телефонии на базе Asterisk для компаний из ритейла, медицины, логистики и других отраслей.">
+  <meta name="keywords" content="кейсы, портфолио, проекты, внедрение, IP-телефония, Asterisk">
+  <meta property="og:title" content="Портфолио AstraITLink">
+  <meta property="og:description" content="Реализованные проекты IP-телефонии для бизнеса.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%230055ff'/%3E%3Ctext x='50' y='62' text-anchor='middle' font-size='36' font-weight='bold' fill='white' font-family='Arial'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+  <div class="header__inner">
+    <a href="index.html" class="logo">Astra<span>ITLink</span></a>
+    <nav class="nav">
+      <ul class="nav__list">
+        <li><a href="index.html" class="nav__link">Главная</a></li>
+        <li><a href="services.html" class="nav__link">Услуги</a></li>
+        <li><a href="about.html" class="nav__link">О компании</a></li>
+        <li><a href="portfolio.html" class="nav__link nav__link--active">Кейсы</a></li>
+        <li><a href="blog.html" class="nav__link">Блог</a></li>
+        <li><a href="contacts.html" class="nav__link">Контакты</a></li>
+      </ul>
+    </nav>
+    <div class="header__cta">
+      <a href="tel:+74951234567" class="header__phone"><i class="fas fa-phone-alt"></i> +7 (495) 123-45-67</a>
+      <a href="contacts.html" class="btn btn--primary btn--sm">Связаться</a>
+    </div>
+    <button class="burger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== BREADCRUMBS ===== -->
+<section class="breadcrumbs">
+  <div class="container">
+    <h1 class="breadcrumbs__title">Реализованные проекты</h1>
+    <div class="breadcrumbs__list">
+      <a href="index.html">Главная</a>
+      <span>/</span>
+      <span>Кейсы</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PORTFOLIO ===== -->
+<section class="page-content">
+  <div class="container">
+
+    <p style="text-align:center;color:var(--text-gray);margin-bottom:32px;font-size:1.05rem;">Более 500 внедрений — от небольших офисов до распределённых колл-центров</p>
+
+    <!-- Filter Buttons -->
+    <div class="portfolio__filter fade-in">
+      <button class="portfolio__filter-btn active" data-filter="all">Все</button>
+      <button class="portfolio__filter-btn" data-filter="retail">Ритейл</button>
+      <button class="portfolio__filter-btn" data-filter="medicine">Медицина</button>
+      <button class="portfolio__filter-btn" data-filter="logistics">Логистика</button>
+    </div>
+
+    <!-- Grid -->
+    <div class="portfolio__grid">
+
+      <!-- Case 1 -->
+      <div class="portfolio-card fade-in" data-category="retail">
+        <div class="portfolio-card__image"><i class="fas fa-store"></i></div>
+        <div class="portfolio-card__body">
+          <span class="portfolio-card__tag">Ритейл</span>
+          <h3 class="portfolio-card__title">«ТоргСервис»</h3>
+          <p class="portfolio-card__desc">Сеть из 45 магазинов. Внедрение облачной АТС с единой маршрутизацией.</p>
+          <div class="portfolio-card__result">
+            <div class="portfolio-card__result-item"><strong>60%</strong> экономия</div>
+            <div class="portfolio-card__result-item"><strong>3 дня</strong> запуск</div>
+          </div>
+          <a href="#" class="btn btn--primary btn--sm" data-modal="case1">Подробнее</a>
+        </div>
+      </div>
+
+      <!-- Case 2 -->
+      <div class="portfolio-card fade-in" data-category="medicine">
+        <div class="portfolio-card__image"><i class="fas fa-hospital"></i></div>
+        <div class="portfolio-card__body">
+          <span class="portfolio-card__tag">Медицина</span>
+          <h3 class="portfolio-card__title">«МедЦентр+»</h3>
+          <p class="portfolio-card__desc">Частная клиника на 30 кабинетов. Настройка Asterisk с интеграцией в 1С.</p>
+          <div class="portfolio-card__result">
+            <div class="portfolio-card__result-item"><strong>70%</strong> экономия</div>
+            <div class="portfolio-card__result-item"><strong>5 дней</strong> запуск</div>
+          </div>
+          <a href="#" class="btn btn--primary btn--sm" data-modal="case2">Подробнее</a>
+        </div>
+      </div>
+
+      <!-- Case 3 -->
+      <div class="portfolio-card fade-in" data-category="logistics">
+        <div class="portfolio-card__image"><i class="fas fa-truck"></i></div>
+        <div class="portfolio-card__body">
+          <span class="portfolio-card__tag">Логистика</span>
+          <h3 class="portfolio-card__title">«ЛогистПро»</h3>
+          <p class="portfolio-card__desc">Транспортная компания. Колл-центр на 50 операторов + запись звонков.</p>
+          <div class="portfolio-card__result">
+            <div class="portfolio-card__result-item"><strong>5 000+</strong> звонков/день</div>
+            <div class="portfolio-card__result-item"><strong>99.9%</strong> uptime</div>
+          </div>
+          <a href="#" class="btn btn--primary btn--sm" data-modal="case3">Подробнее</a>
+        </div>
+      </div>
+
+      <!-- Case 4 -->
+      <div class="portfolio-card fade-in" data-category="retail">
+        <div class="portfolio-card__image"><i class="fas fa-shopping-cart"></i></div>
+        <div class="portfolio-card__body">
+          <span class="portfolio-card__tag">Ритейл</span>
+          <h3 class="portfolio-card__title">Интернет-магазин «Маркет»</h3>
+          <p class="portfolio-card__desc">Интеграция телефонии с amoCRM + виртуальная АТС на 20 номеров.</p>
+          <div class="portfolio-card__result">
+            <div class="portfolio-card__result-item"><strong>120%</strong> рост продаж</div>
+            <div class="portfolio-card__result-item"><strong>1 день</strong> запуск</div>
+          </div>
+          <a href="#" class="btn btn--primary btn--sm" data-modal="case4">Подробнее</a>
+        </div>
+      </div>
+
+      <!-- Case 5 -->
+      <div class="portfolio-card fade-in" data-category="medicine">
+        <div class="portfolio-card__image"><i class="fas fa-clinic-medical"></i></div>
+        <div class="portfolio-card__body">
+          <span class="portfolio-card__tag">Медицина</span>
+          <h3 class="portfolio-card__title">«Стоматология Дент»</h3>
+          <p class="portfolio-card__desc">Запись пациентов через голосовое меню + интеграция с CRM.</p>
+          <div class="portfolio-card__result">
+            <div class="portfolio-card__result-item"><strong>40%</strong> меньше пропущенных</div>
+            <div class="portfolio-card__result-item"><strong>2 дня</strong> запуск</div>
+          </div>
+          <a href="#" class="btn btn--primary btn--sm" data-modal="case5">Подробнее</a>
+        </div>
+      </div>
+
+      <!-- Case 6 -->
+      <div class="portfolio-card fade-in" data-category="logistics">
+        <div class="portfolio-card__image"><i class="fas fa-warehouse"></i></div>
+        <div class="portfolio-card__body">
+          <span class="portfolio-card__tag">Логистика</span>
+          <h3 class="portfolio-card__title">СК «Грузовичкофф»</h3>
+          <p class="portfolio-card__desc">Перенос телефонии с Panasonic на Asterisk для 120 сотрудников.</p>
+          <div class="portfolio-card__result">
+            <div class="portfolio-card__result-item"><strong>55%</strong> экономия</div>
+            <div class="portfolio-card__result-item"><strong>7 дней</strong> миграция</div>
+          </div>
+          <a href="#" class="btn btn--primary btn--sm" data-modal="case6">Подробнее</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== MODAL DATA (hidden) ===== -->
+<div id="case1" style="display:none;">
+  <h3 class="modal__title">«ТоргСервис» — облачная АТС для сети магазинов</h3>
+  <p class="modal__subtitle">Сеть продуктовых магазинов, 45 точек по всей России</p>
+  <p style="color:var(--text-gray);margin-bottom:16px;">Задача: объединить разрозненные номера в единую сеть, снизить расходы на связь.</p>
+  <p style="color:var(--text-gray);margin-bottom:16px;">Решение: внедрили облачную АТС на Asterisk с единым планом нумерации, голосовым меню и маршрутизацией по времени.</p>
+  <div class="modal__results">
+    <div class="modal__result-item"><strong>60%</strong> Экономия бюджета</div>
+    <div class="modal__result-item"><strong>45</strong> Точек подключено</div>
+    <div class="modal__result-item"><strong>3 дня</strong> Срок запуска</div>
+    <div class="modal__result-item"><strong>4.9</strong> Оценка качества</div>
+  </div>
+</div>
+
+<div id="case2" style="display:none;">
+  <h3 class="modal__title">«МедЦентр+» — интеграция с 1С</h3>
+  <p class="modal__subtitle">Многопрофильная клиника, 30 кабинетов</p>
+  <p style="color:var(--text-gray);margin-bottom:16px;">Задача: настроить запись звонков, интегрировать телефонию с 1С для автоматической регистрации пациентов.</p>
+  <p style="color:var(--text-gray);margin-bottom:16px;">Решение: установка Asterisk с модулем записи, интеграция через API 1С. Автоматическое создание карточки пациента при звонке.</p>
+  <div class="modal__results">
+    <div class="modal__result-item"><strong>70%</strong> Экономия</div>
+    <div class="modal__result-item"><strong>30</strong> Рабочих мест</div>
+    <div class="modal__result-item"><strong>5 дней</strong> Внедрение</div>
+    <div class="modal__result-item"><strong>0</strong> Потерянных звонков</div>
+  </div>
+</div>
+
+<div id="case3" style="display:none;">
+  <h3 class="modal__title">«ЛогистПро» — колл-центр на 50 операторов</h3>
+  <p class="modal__subtitle">Транспортно-логистическая компания</p>
+  <p style="color:var(--text-gray);margin-bottom:16px;">Задача: организовать колл-центр для приёма заказов с голосовым меню, очередью звонков и полной записью.</p>
+  <p style="color:var(--text-gray);margin-bottom:16px;">Решение: кластеризация Asterisk на 2 сервера, настройка LCR, интеграция с CRM для автоматического создания заявок.</p>
+  <div class="modal__results">
+    <div class="modal__result-item"><strong>5 000+</strong> Звонков/день</div>
+    <div class="modal__result-item"><strong>99.9%</strong> Uptime</div>
+    <div class="modal__result-item"><strong>50</strong> Операторов</div>
+    <div class="modal__result-item"><strong>2 сек</strong> Время ответа</div>
+  </div>
+</div>
+
+<div id="case4" style="display:none;">
+  <h3 class="modal__title">«Маркет» — интеграция с amoCRM</h3>
+  <p class="modal__subtitle">Интернет-магазин электроники</p>
+  <p style="color:var(--text-gray);margin-bottom:16px;">Задача: подключить многоканальный номер, настроить интеграцию с amoCRM для автоматической фиксации звонков.</p>
+  <p style="color:var(--text-gray);margin-bottom:16px;">Решение: облачная АТС на 20 номеров + виджет для amoCRM. Все звонки автоматически привязываются к сделкам.</p>
+  <div class="modal__results">
+    <div class="modal__result-item"><strong>120%</strong> Рост продаж</div>
+    <div class="modal__result-item"><strong>20</strong> Номеров</div>
+    <div class="modal__result-item"><strong>1 день</strong> Запуск</div>
+    <div class="modal__result-item"><strong>98%</strong> Дозвонов</div>
+  </div>
+</div>
+
+<div id="case5" style="display:none;">
+  <h3 class="modal__title">«Стоматология Дент» — голосовое меню</h3>
+  <p class="modal__subtitle">Сеть стоматологических клиник</p>
+  <p style="color:var(--text-gray);margin-bottom:16px;">Задача: уменьшить количество пропущенных звонков, автоматизировать запись пациентов.</p>
+  <p style="color:var(--text-gray);margin-bottom:16px;">Решение: Asterisk с IVR (голосовое меню), интеграция с CRM, обратный звонок при занятости.</p>
+  <div class="modal__results">
+    <div class="modal__result-item"><strong>40%</strong> Меньше пропущенных</div>
+    <div class="modal__result-item"><strong>3</strong> Клиники</div>
+    <div class="modal__result-item"><strong>2 дня</strong> Внедрение</div>
+    <div class="modal__result-item"><strong>85%</strong> Автоматизация</div>
+  </div>
+</div>
+
+<div id="case6" style="display:none;">
+  <h3 class="modal__title">СК «Грузовичкофф» — миграция с Panasonic</h3>
+  <p class="modal__subtitle">Транспортная компания, 120 сотрудников</p>
+  <p style="color:var(--text-gray);margin-bottom:16px;">Задача: перенести телефонию с устаревшей Panasonic на современную IP-АТС без потери качества.</p>
+  <p style="color:var(--text-gray);margin-bottom:16px;">Решение: установка Asterisk, портирование номеров, настройка софтфонов для удалённых сотрудников.</p>
+  <div class="modal__results">
+    <div class="modal__result-item"><strong>55%</strong> Экономия</div>
+    <div class="modal__result-item"><strong>120</strong> Сотрудников</div>
+    <div class="modal__result-item"><strong>7 дней</strong> Миграция</div>
+    <div class="modal__result-item"><strong>0</strong> Простоев</div>
+  </div>
+</div>
+
+<!-- ===== MODAL ===== -->
+<div class="modal-overlay">
+  <div class="modal">
+    <button class="modal__close"><i class="fas fa-times"></i></button>
+    <h3 class="modal__title"></h3>
+    <p class="modal__subtitle"></p>
+    <div class="modal__results"></div>
+  </div>
+</div>
+
+<!-- ===== CTA ===== -->
+<section class="section section--light">
+  <div class="container">
+    <div style="text-align:center;">
+      <h2 class="section-title fade-in" style="margin-bottom:12px;">Хотите такой же результат?</h2>
+      <p class="section-subtitle fade-in" style="margin-bottom:24px;">Расскажите о вашей задаче — мы подготовим решение с расчётом экономии</p>
+      <a href="contacts.html" class="btn btn--primary">Обсудить проект</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="logo">Astra<span>ITLink</span></a>
+        <p>Надёжные VoIP-решения на базе Asterisk для вашего бизнеса. Настройка, внедрение и круглосуточная поддержка.</p>
+      </div>
+      <div>
+        <h4 class="footer__title">Навигация</h4>
+        <ul class="footer__links">
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="services.html">Услуги</a></li>
+          <li><a href="about.html">О компании</a></li>
+          <li><a href="portfolio.html">Кейсы</a></li>
+          <li><a href="blog.html">Блог</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__title">Услуги</h4>
+        <ul class="footer__links">
+          <li><a href="services.html">Виртуальная АТС</a></li>
+          <li><a href="services.html">SIP-телефония</a></li>
+          <li><a href="services.html">Настройка Asterisk</a></li>
+          <li><a href="services.html">Интеграция с CRM</a></li>
+          <li><a href="services.html">Запись разговоров</a></li>
+          <li><a href="services.html">Техподдержка</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__title">Контакты</h4>
+        <div class="footer__contact-item"><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Технологическая, д. 15</div>
+        <div class="footer__contact-item"><i class="fas fa-phone"></i> <a href="tel:+74951234567">+7 (495) 123-45-67</a></div>
+        <div class="footer__contact-item"><i class="fas fa-envelope"></i> <a href="mailto:info@astra-itlink.ru">info@astra-itlink.ru</a></div>
+        <div class="footer__social">
+          <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" aria-label="VK"><i class="fab fa-vk"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      &copy; 2026 AstraITLink. Все права защищены.
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
